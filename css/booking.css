@@ -1,0 +1,79 @@
+html {
+  height: 100%;
+}
+nav {
+  height: 6vh;
+  width: 100%;
+  background-color: rgb(24, 24, 24);
+}
+
+.navlinks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.navlink {
+  padding: 0.5em 2em;
+  text-decoration: none;
+  color: blanchedalmond;
+  font-size: 2rem;
+}
+
+section {
+  background-color: rgb(59, 44, 29);
+  background-size: cover;
+  text-align: center;
+  padding: 2rem 0;
+  color: rgb(212, 212, 212);
+  width: 100%;
+  min-height: 80vh;
+  font-size: 1.5rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0em 0 2em 0;
+}
+
+h2 {
+  color: white;
+  text-align: center;
+  text-justify: center;
+}
+
+label {
+    font-size: 1.5rem;
+    margin-top: 1em;
+    display: block;
+}
+
+input, textarea, select {
+  font-size: 1.5rem;
+  background-color: rgb(248, 184, 99);
+  color: black;
+  margin: 0.5em 0;
+}
+
+.comment {
+  font-size: 2rem;
+}
+
+.submit {
+  background-color: blanchedalmond;
+  height: 1.5em;
+  width: 5em;
+  margin: 1em;
+  border-radius: 0.5em;
+  box-shadow: 0.2em 0.1em 1em rgb(248, 184, 99);
+  font-size: 2rem;font-weight: bold;
+}
+
+footer {
+  background-color: black;
+  width: 100%;
+  min-height: 3.1vh;
+  padding: 2em 0;
+  line-height: 1em;
+}
