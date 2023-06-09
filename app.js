@@ -1,77 +1,4 @@
-const { createApp } = Vue
-const roomsDataBase = {
-  "rooms": [
-    {
-      "name": "Szilvia",
-      "beds": [
-        {
-          "type": "single"
-        },
-        {
-          "type": "queen"
-        }
-      ],
-      "occupied": false
-    },
-    {
-      "name": "Anna",
-      "beds": [
-        {
-          "type": "single"
-        },
-        {
-          "type": "single"
-        },
-        {
-          "type": "queen"
-        }
-      ],
-      "occupied": true
-    },
-    {
-      "name": "Luca",
-      "beds": [
-        {
-          "type": "single"
-        },
-        {
-          "type": "single"
-        }
-      ]
-    },
-    {
-      "name": "Kata",
-      "beds": [{
-        "type": "queen"
-      }],
-      "occupied": false
-    },
-    {
-      "name": "Liza",
-      "beds": [
-        {
-          "type": "single"
-        },
-        {
-          "type": "single"
-        },
-        {
-          "type": "single"
-        },
-        {
-          "type": "single"
-        }
-      ],
-      "occupied": true
-    }
-  ]
-};
-
-/* nem-utolsó ágy-e? <-- módszer 1   95-97
-if (roomsDataBase.rooms[i].beds.length - 1 > j) {
-  roomInfo = roomInfo + ", ";
-}
-ezt meghagyom későbbre, hasznos*/
+const { createApp } = Vue;
 
 let formRoomsDataBaseElements = [];
 let room = {};
@@ -102,54 +29,51 @@ for (i = 0; i < roomsDataBase.rooms.length; i++) {
   formRoomsDataBaseElements[i] = room;
 }
 
+let appData = {
+// all the data that the user enters in the form
+  formUserData: {
+    firstName: '',
+    lastName: '',
+    message: '',
+    comment: ''
+  },
+// options that the user can select
+  formOptions: {
+    startDate: '',
+    endDate: '',
+    headCount: '',
+    formRoomList: '',
+    formRoomsDataBaseElements: formRoomsDataBaseElements,
+    headCountOptions: [
+      { text: '1 fő', value: '1' },
+      { text: '2 fő', value: '2' },
+      { text: '3 fő', value: '3' },
+      { text: '4 fő', value: '4' },
+      { text: '5 fő', value: '5' }
+    ]
+  }
+};
+
 const app = createApp({
   data() {
-    return {
-      message: 'Biztos, ami biztos',
-      formRoomList: '',
-      formRoomsDataBaseElements: formRoomsDataBaseElements,
-      firstName: '',
-      lastName: '',
-      headCount: '',
-      headCounts: [
-        { text: '1 fő', value: '1' },
-        { text: '2 fő', value: '2' },
-        { text: '3 fő', value: '3' },
-        { text: '4 fő', value: '4' },
-        { text: '5 fő', value: '5' }
-      ],
-      startDate: '',
-      endDate: '',
-      comment: ''
-    }
+    return appData;
   },
   methods: {
-
-    /*  onSubmit(event) {
-          let popUpText = "";
-          alert(`Hello ${this.lastName} ${this.firstName}!\n${this.headCount}főre foglalt szobát nálunk\n${this.startDate}-től \n${this.endDate}-ig`)
-          if (event) {
-            alert(event.target.tagName)
-          }
-        }*/
-
     onSubmit(event) {
       let popUpText = '';
 
-
-      popUpText = "Név: " + `${this.lastName}` + " " + `${this.firstName}`;
+      popUpText = "Név: " + `${this.formUserData.lastName}` + " " + `${this.formUserData.firstName}`;
       popUpText += "\n";
-      popUpText += "Vendégek száma: " + this.headCount;
+      popUpText += "Vendégek száma: " + this.formOptions.headCount;
       popUpText += "\n";
-      popUpText += "Érkezés napja: " + this.startDate;
+      popUpText += "Érkezés napja: " + this.formOptions.startDate;
       popUpText += "\n";
-      popUpText += "Távozás napja: " + this.endDate;
+      popUpText += "Távozás napja: " + this.formOptions.endDate;
       popUpText += "\n";
-      popUpText += "Lakosztály: " + roomsDataBase.rooms[this.formRoomList].name;
+      popUpText += "Lakosztály: " + roomsDataBase.rooms[this.formOptions.formRoomList].name;
       popUpText += "\n";
-      popUpText += "Megjegyzés: " + `${this.comment}`;
+      popUpText += "Megjegyzés: " + `${this.formUserData.comment}`;
       alert(popUpText);
-
     }
   }
 });
@@ -157,12 +81,7 @@ const app = createApp({
 app.config.errorHandler = (err) => {
   console.log("hiba történt");
   console.log(err);
-}
+};
 
 app.mount('#app');
-
-
-
-
-
 
