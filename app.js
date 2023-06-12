@@ -30,14 +30,14 @@ for (i = 0; i < roomsDataBase.rooms.length; i++) {
 }
 
 let appData = {
-// all the data that the user enters in the form
+  // all the data that the user enters in the form
   formUserData: {
     firstName: '',
     lastName: '',
     message: '',
     comment: ''
   },
-// options that the user can select
+  // options that the user can select
   formOptions: {
     startDate: '',
     endDate: '',
@@ -70,18 +70,17 @@ const app = createApp({
       popUpText += "\n";
       popUpText += "Távozás napja: " + this.formOptions.endDate;
       popUpText += "\n";
-      popUpText += "Lakosztály: " + roomsDataBase.rooms[this.formOptions.formRoomList].name;
+      if (Number.isInteger(this.formOptions.formRoomList)) {
+        popUpText += "Lakosztály: " + roomsDataBase.rooms[this.formOptions.formRoomList].name;
+      } else {
+        popUpText += "Lakosztály: Kérem válasszon szobát!";
+      }
       popUpText += "\n";
       popUpText += "Megjegyzés: " + `${this.formUserData.comment}`;
       alert(popUpText);
     }
   }
 });
-
-app.config.errorHandler = (err) => {
-  console.log("hiba történt");
-  console.log(err);
-};
 
 app.mount('#app');
 
