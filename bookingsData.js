@@ -34,7 +34,7 @@ const bookingsData = {
       "dateOfArrival": "2023-9-10",
       "dateOfDeparture": "2023-9-23",
       "room": "Luca",
-      "comment": "Szeretnénk kérni egy kis gyertyát."
+      "comment": "Szeretnénk kérni gyertyát."
     },
     {
       "firstName": "Helga",
