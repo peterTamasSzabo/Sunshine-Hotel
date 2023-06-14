@@ -64,7 +64,7 @@ const app = createApp({
 
       popUpText = "Név: " + `${this.formUserData.lastName}` + " " + `${this.formUserData.firstName}`;
       popUpText += "\n";
-      popUpText += "Vendégek száma: " + this.formOptions.headCount;
+      popUpText += "Vendégek száma: " + Number(this.formOptions.headCount);
       popUpText += "\n";
       popUpText += "Érkezés napja: " + this.formOptions.startDate;
       popUpText += "\n";

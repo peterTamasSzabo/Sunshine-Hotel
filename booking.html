@@ -46,7 +46,7 @@
         <label for="firstName">Keresztnév:</label>
         <input type="text" v-model="formUserData.firstName" id="firstName" name="firstName">
         <label for="headCount">Hány főre foglal szobát?</label>
-        <select v-model="formOptions.headCount" name="headCount">
+        <select v-model="formOptions.headCount" id="headCount" name="headCount">
           <option value="" disabled hidden>Vendégek száma</option>
           <option v-for="headCount in formOptions.headCountOptions" :value="headCount.value">
             {{ headCount.text }}
@@ -57,7 +57,7 @@
         <label for="endDate">End date:</label>
         <input v-model="formOptions.endDate" type="date" id="endDate" name="endDate" min="2023-06-01" max="2023-12-31">
         <label for="formRoomText">Melyik lakosztályban kíván megszállni?</label>
-        <select v-model="formOptions.formRoomList" name="formRoomList" placeholder="lakosztályaink">
+        <select v-model="formOptions.formRoomList" id="formRoomList" name="formRoomList" placeholder="lakosztályaink">
           <option value="" disabled hidden>Lakosztályt választok</option>
           <option v-for="room in formOptions.formRoomsDataBaseElements" :value="room.value" :disabled="room.isOccupied">
             {{ room.text }}
