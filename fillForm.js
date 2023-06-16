@@ -1,17 +1,27 @@
 javascript: (() => {
   let firstNameInput = document.getElementById("firstName");
-  firstNameInput.value = "Béla";
-  let blurEvent = new Event('focusout');
-  firstNameInput.dispatchEvent(blurEvent);
+  let inputEvent = new Event('input');
   let lastNameInput = document.getElementById("lastName");
-  lastName.value = "Király";
+  let changeEvent = new Event('change');
   let headCountInput = document.getElementById("headCount");
-  headCount.value = "3";
   let startDateInput = document.getElementById("startDate");
-  startDate.value = "2023-08-03";
   let endDateInput = document.getElementById("endDate");
+  let formRoomListInput = document.getElementById("formRoomList");
+  let commentInput = document.getElementById("comment");
+
+  firstNameInput.value = "Béla";
+  lastName.value = "Király";
+  headCount.value = 3;
+  startDate.value = "2023-08-03";
   endDate.value = "2023-08-11";
+  formRoomList.value = 3;
+  comment.value = "abc";
+
+  firstNameInput.dispatchEvent(inputEvent);
+  lastNameInput.dispatchEvent(inputEvent);
+  headCountInput.dispatchEvent(changeEvent);
+  startDateInput.dispatchEvent(inputEvent);
+  endDateInput.dispatchEvent(inputEvent);
+  formRoomListInput.dispatchEvent(changeEvent);
+  commentInput.dispatchEvent(inputEvent);
 })();
-
-
-

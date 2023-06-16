@@ -45,6 +45,7 @@
         <input type="text" v-model="formUserData.lastName" id="lastName" name="lastName">
         <label for="firstName">Keresztnév:</label>
         <input type="text" v-model="formUserData.firstName" id="firstName" name="firstName">
+
         <label for="headCount">Hány főre foglal szobát?</label>
         <select v-model="formOptions.headCount" id="headCount" name="headCount">
           <option value="" disabled hidden>Vendégek száma</option>
@@ -52,10 +53,12 @@
             {{ headCount.text }}
           </option>
         </select>
+
         <label for="startDate">Start date:</label>
         <input v-model="formOptions.startDate" type="date" id="startDate" name="startDate" min="2023-06-01" max="2023-12-31">
         <label for="endDate">End date:</label>
         <input v-model="formOptions.endDate" type="date" id="endDate" name="endDate" min="2023-06-01" max="2023-12-31">
+
         <label for="formRoomText">Melyik lakosztályban kíván megszállni?</label>
         <select v-model="formOptions.formRoomList" id="formRoomList" name="formRoomList" placeholder="lakosztályaink">
           <option value="" disabled hidden>Lakosztályt választok</option>
@@ -64,7 +67,9 @@
           </option>
         </select>
         <label for="comment">Megjegyzés:</label>
-        <textarea v-model="formUserData.comment" id="comment" class="comment" name="comment" rows="3" cols="30"></textarea><br>
+        <textarea v-model="formUserData.comment" id="comment" class="comment" name="comment" rows="3" cols="30">
+        </textarea>
+        <br>
         <input class="submit" type="submit" value="Submit">
       </form>
     </section>
