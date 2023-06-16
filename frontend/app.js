@@ -41,15 +41,15 @@ let appData = {
   formOptions: {
     startDate: '',
     endDate: '',
-    headCount: '',
+    headCount: null,
     formRoomList: '',
     formRoomsDataBaseElements: formRoomsDataBaseElements,
     headCountOptions: [
-      { text: '1 fő', value: '1' },
-      { text: '2 fő', value: '2' },
-      { text: '3 fő', value: '3' },
-      { text: '4 fő', value: '4' },
-      { text: '5 fő', value: '5' }
+      { text: '1 fő', value: 1 },
+      { text: '2 fő', value: 2 },
+      { text: '3 fő', value: 3 },
+      { text: '4 fő', value: 4 },
+      { text: '5 fő', value: 5 }
     ]
   }
 };
