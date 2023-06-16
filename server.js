@@ -12,7 +12,6 @@ server.get('/', (req, res) => {
 });
 
 server.get('/rooms', (req, res) => {
-    const {MongoClient} = require('mongodb');
     const client = new MongoClient(mongoDBUrl);
 
     async function getRoomData() {
@@ -36,7 +35,6 @@ server.get('/rooms', (req, res) => {
 });
 
 server.get('/bookings', (req, res) => {
-    const {MongoClient} = require('mongodb');
     const client = new MongoClient(mongoDBUrl);
 
     async function getRoomData() {
