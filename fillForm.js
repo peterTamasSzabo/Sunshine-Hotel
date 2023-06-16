@@ -1,13 +1,13 @@
 javascript: (() => {
   let firstNameInput = document.getElementById("firstName");
-  let inputEvent = new Event('input');
   let lastNameInput = document.getElementById("lastName");
-  let changeEvent = new Event('change');
   let headCountInput = document.getElementById("headCount");
   let startDateInput = document.getElementById("startDate");
   let endDateInput = document.getElementById("endDate");
   let formRoomListInput = document.getElementById("formRoomList");
   let commentInput = document.getElementById("comment");
+  let inputEvent = new Event('input');
+  let changeEvent = new Event('change');
 
   firstNameInput.value = "Béla";
   lastName.value = "Király";
