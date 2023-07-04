@@ -12,7 +12,7 @@ server.get('/', (req, res) => {
 });
 
 server.get('/rooms', (req, res) => {
-    const client = new MongoClient(uri, {
+    const client = new MongoClient(mongoDBUrl, {
         family: 4,
     });
     async function getRoomData() {
