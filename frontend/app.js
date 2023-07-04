@@ -8,6 +8,7 @@ let formRoomText;
 let isOccupied;
 let i;
 let j;
+let roomsDataBase;
 
 for (i = 0; i < roomsDataBase.rooms.length; i++) {
   roomInfo = "";
@@ -37,6 +38,7 @@ let appData = {
     message: '',
     comment: ''
   },
+  rooms: [],
   // options that the user can select
   formOptions: {
     startDate: '',
@@ -54,14 +56,68 @@ let appData = {
   }
 };
 
+
+
+/* ChatGPT írta: 
+
+export default {
+  data() {
+    return {
+      rooms: []
+    };
+  },
+  created() {
+    this.fetchRooms();
+  },
+  methods: {
+    fetchRooms() {
+      fetch('/rooms')
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Request failed with status ' + response.status);
+          }
+        })
+        .then(data => {
+          this.rooms = data;
+        })
+        .catch(error => {
+          console.error('Request failed:', error);
+        });
+    }
+  }
+};
+*/
+
 const app = createApp({
   data() {
     return appData;
+    
+  },
+  created() {
+    this.fetchRooms();
   },
   methods: {
+    fetchRooms() {
+      fetch('/rooms')
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Request failed with status ' + response.status);
+          }
+        })
+        .then(data => {
+          this.rooms = data;
+        })
+        .catch(error => {
+          console.error('Request failed:', error);
+        });
+    },
+
     onSubmit(event) {
       let popUpText = '';
-
       popUpText = "Név: " + `${this.formUserData.lastName}` + " " + `${this.formUserData.firstName}`;
       popUpText += "\n";
       popUpText += "Vendégek száma: " + this.formOptions.headCount;

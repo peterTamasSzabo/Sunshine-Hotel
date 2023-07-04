@@ -1,0 +1,80 @@
+[{
+  "_id": {
+    "$oid": "64930f33582e016514b9ac2d"
+  },
+  "name": "Szilvia",
+  "beds": [
+    {
+      "type": "single"
+    },
+    {
+      "type": "queen"
+    }
+  ],
+  "occupied": false
+},
+{
+  "_id": {
+    "$oid": "64930f33582e016514b9ac2e"
+  },
+  "name": "Anna",
+  "beds": [
+    {
+      "type": "single"
+    },
+    {
+      "type": "single"
+    },
+    {
+      "type": "queen"
+    }
+  ],
+  "occupied": true
+},
+{
+  "_id": {
+    "$oid": "64930f33582e016514b9ac2f"
+  },
+  "name": "Luca",
+  "beds": [
+    {
+      "type": "single"
+    },
+    {
+      "type": "single"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "64930f33582e016514b9ac30"
+  },
+  "name": "Kata",
+  "beds": [
+    {
+      "type": "queen"
+    }
+  ],
+  "occupied": false
+},
+{
+  "_id": {
+    "$oid": "64930f33582e016514b9ac31"
+  },
+  "name": "Liza",
+  "beds": [
+    {
+      "type": "single"
+    },
+    {
+      "type": "single"
+    },
+    {
+      "type": "single"
+    },
+    {
+      "type": "single"
+    }
+  ],
+  "occupied": true
+}]

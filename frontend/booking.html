@@ -54,6 +54,15 @@
           </option>
         </select>
 
+
+        
+        <div>
+          <ul v-if="rooms.length">
+            <li v-for="room in rooms" :key="room.id">{{ room.name }}</li>
+          </ul>
+        </div>
+
+
         <label for="startDate">Start date:</label>
         <input v-model="formOptions.startDate" type="date" id="startDate" name="startDate" min="2023-06-01" max="2023-12-31">
         <label for="endDate">End date:</label>

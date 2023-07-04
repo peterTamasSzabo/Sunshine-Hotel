@@ -1,5 +1,5 @@
 const express = require('express');
-const {MongoClient} = require("mongodb");
+const { MongoClient } = require("mongodb");
 const server = express();
 const port = 3000;
 const mongoDBUrl = "mongodb://localhost:27017/";
@@ -12,8 +12,9 @@ server.get('/', (req, res) => {
 });
 
 server.get('/rooms', (req, res) => {
-    const client = new MongoClient(mongoDBUrl);
-
+    const client = new MongoClient(uri, {
+        family: 4,
+    });
     async function getRoomData() {
         try {
             const database = client.db("sunshineDB");
