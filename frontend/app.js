@@ -8,7 +8,6 @@ let formRoomText;
 let isOccupied;
 let i;
 let j;
-let roomsDataBase;
 
 for (i = 0; i < roomsDataBase.rooms.length; i++) {
   roomInfo = "";
