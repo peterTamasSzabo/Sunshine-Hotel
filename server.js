@@ -14,12 +14,16 @@ server.get('/', (req, res) => {
 server.get('/rooms', (req, res) => {
     const client = new MongoClient(mongoDBUrl, {
         family: 4,
+        maxPoolSize: 200,
+        maxConnecting: 15
     });
+    let roomsCursor;
+
     async function getRoomData() {
         try {
             const database = client.db("sunshineDB");
-            const bookings = database.collection("rooms");
-            const roomsCursor = await bookings.find();
+            const rooms = database.collection("rooms");
+            roomsCursor = await rooms.find();
             let result = [];
 
             for await (const doc of roomsCursor) {
@@ -28,6 +32,7 @@ server.get('/rooms', (req, res) => {
 
             res.send(result);
         } finally {
+            roomsCursor.close();
             await client.close();
         }
     }
@@ -36,13 +41,18 @@ server.get('/rooms', (req, res) => {
 });
 
 server.get('/bookings', (req, res) => {
-    const client = new MongoClient(mongoDBUrl);
+    const client = new MongoClient(mongoDBUrl, {
+        family: 4,
+        maxPoolSize: 200,
+        maxConnecting: 15
+    });
+    let bookingsCursor;
 
     async function getRoomData() {
         try {
             const database = client.db("sunshineDB");
             const bookings = database.collection("bookings");
-            const bookingsCursor = await bookings.find();
+            bookingsCursor = await bookings.find();
             let result = [];
 
             for await (const doc of bookingsCursor) {
@@ -51,6 +61,7 @@ server.get('/bookings', (req, res) => {
 
             res.send(result);
         } finally {
+            bookingsCursor.close();
             await client.close();
         }
     }

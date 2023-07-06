@@ -38,6 +38,7 @@ let appData = {
     comment: ''
   },
   rooms: [],
+  bookings: [],
   // options that the user can select
   formOptions: {
     startDate: '',
@@ -92,12 +93,15 @@ export default {
 const app = createApp({
   data() {
     return appData;
-    
+
   },
   created() {
     this.fetchRooms();
+    this.fetchBookings();
   },
+
   methods: {
+
     fetchRooms() {
       fetch('/rooms')
         .then(response => {
@@ -109,6 +113,23 @@ const app = createApp({
         })
         .then(data => {
           this.rooms = data;
+        })
+        .catch(error => {
+          console.error('Request failed:', error);
+        });
+    },
+
+    fetchBookings() {
+      fetch('/bookings')
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Request failed with status ' + response.status);
+          }
+        })
+        .then(data => {
+          this.bookings = data;
         })
         .catch(error => {
           console.error('Request failed:', error);
