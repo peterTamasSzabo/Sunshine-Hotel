@@ -9,26 +9,6 @@ let isOccupied;
 let i;
 let j;
 
-for (i = 0; i < roomsDataBase.rooms.length; i++) {
-  roomInfo = "";
-
-  for (j = 0; j < roomsDataBase.rooms[i].beds.length; j++) {
-    newInfo = roomsDataBase.rooms[i].beds[j].type;
-    roomInfo = roomInfo + newInfo;
-    roomInfo = roomInfo + ", ";
-  }
-
-  roomInfo = roomInfo.substring(0, roomInfo.length - 2);
-  formRoomText = roomsDataBase.rooms[i].name + " (" + roomInfo + ")";
-  isOccupied = roomsDataBase.rooms[i].occupied;
-  room = {
-    text: formRoomText,
-    value: i,
-    isOccupied: isOccupied
-  };
-  formRoomsDataBaseElements[i] = room;
-}
-
 let appData = {
   // all the data that the user enters in the form
   formUserData: {
@@ -56,40 +36,6 @@ let appData = {
   }
 };
 
-
-
-/* ChatGPT írta: 
-
-export default {
-  data() {
-    return {
-      rooms: []
-    };
-  },
-  created() {
-    this.fetchRooms();
-  },
-  methods: {
-    fetchRooms() {
-      fetch('/rooms')
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Request failed with status ' + response.status);
-          }
-        })
-        .then(data => {
-          this.rooms = data;
-        })
-        .catch(error => {
-          console.error('Request failed:', error);
-        });
-    }
-  }
-};
-*/
-
 const app = createApp({
   data() {
     return appData;
@@ -112,7 +58,27 @@ const app = createApp({
           }
         })
         .then(data => {
-          this.rooms = data;
+          this.roomsData = data;
+          for (i = 0; i < this.roomsData.length; i++) {
+            roomInfo = "";
+          
+            for (j = 0; j < this.roomsData[i].beds.length; j++) {
+              newInfo = this.roomsData[i].beds[j].type;
+              roomInfo = roomInfo + newInfo;
+              roomInfo = roomInfo + ", ";
+            }
+          
+            roomInfo = roomInfo.substring(0, roomInfo.length - 2);
+            formRoomText = this.roomsData[i].name + " (" + roomInfo + ")";
+            isOccupied = this.roomsData[i].occupied;
+            room = {
+              text: formRoomText,
+              value: i,
+              isOccupied: isOccupied
+            };
+            this.formOptions.formRoomsDataBaseElements.splice(i, 1, room);
+          }
+
         })
         .catch(error => {
           console.error('Request failed:', error);
@@ -147,7 +113,7 @@ const app = createApp({
       popUpText += "Távozás napja: " + this.formOptions.endDate;
       popUpText += "\n";
       if (Number.isInteger(this.formOptions.formRoomList)) {
-        popUpText += "Lakosztály: " + roomsDataBase.rooms[this.formOptions.formRoomList].name;
+        popUpText += "Lakosztály: " + this.roomsData[this.formOptions.formRoomList].name;
       } else {
         popUpText += "Lakosztály: Kérem válasszon szobát!";
       }
