@@ -20,8 +20,11 @@ let appData = {
   formUserData: {
     firstName: '',
     lastName: '',
-    message: '',
-    comment: ''
+    comment: '',
+    startDate: '',
+    endDate: '',
+    headCount: null,
+    formRoom: ''
   },
   rooms: [],
   bookings: [],
@@ -29,10 +32,6 @@ let appData = {
   // options that the user can select
   //az appData objectben hozz létre egy formOptions nevű objectet, amiben key-value pairek legyenek
   formOptions: {
-    startDate: '',
-    endDate: '',
-    headCount: null,
-    formRoomList: '',
     formRoomsDataBaseElements: formRoomsDataBaseElements,
     //az appData objecten belüli formOptions objectben hozz létre egy headCountOptions nevű array-t, amiben legyen 5 névtelen object, bennük fejenként 2-2 key-value pairrel
     headCountOptions: [
@@ -144,24 +143,65 @@ const app = createApp({
         });
     },
 
+    postFormData(allFormUserData) {
+      fetch('/insertBooking', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(allFormUserData)
+      })
+        .then(response => {
+          if (response.ok) {
+            console.log("response ok");
+            return response.json();
+          } else {
+            throw new Error('Request failed with status ' + response.status);
+          }
+        })
+        .catch(error => {
+          console.error('Request failed:', error);
+        });
+    },
+
 
     /* hozz létre egy onSubmit nevű functiont, aminek legyen egy event nevű paramétere, a függvénymagban a következőket tegye:
         - deklarálj egy popUpText nevű változót, és definiáld stringként  
         - a popUpText változó dinamikusan töltődjön fel új sorokba írt string-ekkel és azokhoz tartozzanak előzőleg definiált adatok
-        - amennyiben választott lakosztályt a kliens, a formOptions.formRoomList data type-ja number lesz, ekkor írja ki a numberhez tartozó szoba nevét, ha nem választott, tehát a formOptions.formRoomList data type-ja nem number, akkor szólítsa fel szobaválasztásra
+        - amennyiben választott lakosztályt a kliens, a formUserData.formRoom data type-ja number lesz, ekkor írja ki a numberhez tartozó szoba nevét, ha nem választott, tehát a formUserData.formRoom data type-ja nem number, akkor szólítsa fel szobaválasztásra
         - egy alert message-ként írja ki a popUpText változó teljes értékét */
     onSubmit(event) {
+      let allFormUserData = {
+        formUserData: {
+          firstName: this.formUserData.firstName,
+          lastName: this.formUserData.lastName,
+          comment: this.formUserData.comment,
+          startDate: this.formUserData.startDate,
+          endDate: this.formUserData.endDate,
+          headCount: this.formUserData.headCount
+        }
+      };
+
+      //kell egy condition, ami megnézi, hogy a formból ki van-e választva room, ha igen, akkor bekerül a lakosztály nevébe, ha nincs, akkor console.logra írjon ki: nincs szoba kiválasztva
+      if (Number.isInteger(this.formUserData.formRoom)) {
+        allFormUserData.formUserData.formRoom = this.formUserData.formRoom;
+      } else {
+        console.log("Kérem válasszon lakosztályt!");
+      }
+
+      this.postFormData(allFormUserData);
+
       let popUpText = '';
       popUpText = "Név: " + `${this.formUserData.lastName}` + " " + `${this.formUserData.firstName}`;
       popUpText += "\n";
-      popUpText += "Vendégek száma: " + this.formOptions.headCount;
+      popUpText += "Vendégek száma: " + this.formUserData.headCount;
       popUpText += "\n";
-      popUpText += "Érkezés napja: " + this.formOptions.startDate;
+      popUpText += "Érkezés napja: " + this.formUserData.startDate;
       popUpText += "\n";
-      popUpText += "Távozás napja: " + this.formOptions.endDate;
+      popUpText += "Távozás napja: " + this.formUserData.endDate;
       popUpText += "\n";
-      if (Number.isInteger(this.formOptions.formRoomList)) {
-        popUpText += "Lakosztály: " + this.roomsData[this.formOptions.formRoomList].name;
+      if (Number.isInteger(this.formUserData.formRoom)) {
+        popUpText += "Lakosztály: " + this.roomsData[this.formUserData.formRoom].name;
       } else {
         popUpText += "Lakosztály: Kérem válasszon szobát!";
       }

@@ -4,7 +4,7 @@ javascript: (() => {
   let headCountInput = document.getElementById("headCount");
   let startDateInput = document.getElementById("startDate");
   let endDateInput = document.getElementById("endDate");
-  let formRoomListInput = document.getElementById("formRoomList");
+  let formRoomInput = document.getElementById("formRoom");
   let commentInput = document.getElementById("comment");
   let inputEvent = new Event('input');
   let changeEvent = new Event('change');
@@ -14,7 +14,7 @@ javascript: (() => {
   headCount.value = 3;
   startDate.value = "2023-08-03";
   endDate.value = "2023-08-11";
-  formRoomList.value = 3;
+  formRoom.value = 3;
   comment.value = "abc";
 
   firstNameInput.dispatchEvent(inputEvent);
@@ -22,6 +22,6 @@ javascript: (() => {
   headCountInput.dispatchEvent(changeEvent);
   startDateInput.dispatchEvent(inputEvent);
   endDateInput.dispatchEvent(inputEvent);
-  formRoomListInput.dispatchEvent(changeEvent);
+  formRoomInput.dispatchEvent(changeEvent);
   commentInput.dispatchEvent(inputEvent);
 })();

@@ -1,2 +1,7 @@
 
 node_modules
+.idea/modules.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
+Sunshine-Hotel.iml
