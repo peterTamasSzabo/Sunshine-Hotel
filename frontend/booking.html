@@ -37,9 +37,12 @@
         </ul>
       </nav>
     </header>
-
+    
     <section>
-      <form @submit.prevent="onSubmit">
+      <section v-if="showServerError">
+        <h1>Nem sikerült elküldeni a foglalást, kérjük próbálja meg később!</h1>
+      </section>
+      <form @submit.prevent="onSubmit" v-if="showForm">
         <h1>Szobafoglalás</h1>
         <label for="lastName">Vezetéknév:</label>
         <input type="text" v-model="formUserData.lastName" id="lastName" name="lastName">
@@ -73,6 +76,18 @@
         <br>
         <input class="submit" type="submit" value="Submit">
       </form>
+
+      <section v-if="!showForm">
+        <h1>Sikeresen feladta a foglalását!</h1><br><br>
+        <p>Név: {{ formUserData.lastName }} {{ formUserData.firstName }}</p>
+        <p>Vendégek száma: {{ formUserData.numberOfGuests }} </p>
+        <p>Érkezés napja: {{ formUserData.dateOfArrival }} </p>
+        <p>Távozás napja: {{ formUserData.dateOfDeparture }} </p>
+        <p>Lakosztály: {{ roomsData[formUserData.formRoom].name }} </p>
+        <p>Megjegyzés: {{ formUserData.comment }} </p>
+      </section>
+
+
     </section>
 
     <footer>
@@ -84,7 +99,6 @@
 
 
 
-  <script src="roomsDatabase.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 

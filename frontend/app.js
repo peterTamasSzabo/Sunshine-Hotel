@@ -41,7 +41,9 @@ let appData = {
       { text: '4 fő', value: 4 },
       { text: '5 fő', value: 5 }
     ]
-  }
+  },
+  showForm: true,
+  showServerError: false
 };
 
 /*létrehoz egy app nevű constant-ot, amit definiálunk egy createApp nevű functionnel, amiben van egy data nevű function, ami a fentebbi appData nevű object változóinak értékeit adja vissza. A createApp visszaadv valamit, és ez lesz az app értéke.
@@ -159,7 +161,12 @@ const app = createApp({
             throw new Error('Request failed with status ' + response.status);
           }
         })
+        .then(data => {
+          this.showForm = !data.successfulDatabaseInsert;
+          this.showServerError = !data.successfulDatabaseInsert;
+        })
         .catch(error => {
+          this.showServerError = true;
           console.error('Request failed:', error);
         });
     },
@@ -181,7 +188,6 @@ const app = createApp({
           numberOfGuests: this.formUserData.numberOfGuests
         }
       };
-
       //kell egy condition, ami megnézi, hogy a formból ki van-e választva room, ha igen, akkor bekerül a lakosztály nevébe, ha nincs, akkor console.logra írjon ki: nincs szoba kiválasztva
       if (Number.isInteger(this.formUserData.formRoom)) {
         allFormUserData.formUserData.formRoom = this.formUserData.formRoom;
@@ -191,23 +197,7 @@ const app = createApp({
 
       this.postFormData(allFormUserData);
 
-      let popUpText = '';
-      popUpText = "Név: " + `${this.formUserData.lastName}` + " " + `${this.formUserData.firstName}`;
-      popUpText += "\n";
-      popUpText += "Vendégek száma: " + this.formUserData.numberOfGuests;
-      popUpText += "\n";
-      popUpText += "Érkezés napja: " + this.formUserData.dateOfArrival;
-      popUpText += "\n";
-      popUpText += "Távozás napja: " + this.formUserData.dateOfDeparture;
-      popUpText += "\n";
-      if (Number.isInteger(this.formUserData.formRoom)) {
-        popUpText += "Lakosztály: " + this.roomsData[this.formUserData.formRoom].name;
-      } else {
-        popUpText += "Lakosztály: Kérem válasszon szobát!";
-      }
-      popUpText += "\n";
-      popUpText += "Megjegyzés: " + `${this.formUserData.comment}`;
-      alert(popUpText);
+
     }
   }
 });

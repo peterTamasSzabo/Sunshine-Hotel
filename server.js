@@ -31,14 +31,14 @@ server.post('/insertBooking', (req, res) => {
             let insertedId = dataBaseInsertResult.insertedId;
 
             if (insertedId) {
-                returnData.succesfulDatabaseInsert = true;
+                returnData.successfulDatabaseInsert = true;
             }
 
             res.send(returnData);
         } finally {
             //dataBaseInsertResult.close();
             res.send({
-                succesfulDatabaseInsert: false
+                successfulDatabaseInsert: false
             });
             await client.close();
         }
