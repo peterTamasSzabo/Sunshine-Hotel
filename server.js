@@ -1,6 +1,8 @@
 const express = require('express');
 const { MongoClient } = require("mongodb");
 const server = express();
+server.use(express.json()) // for parsing application/json
+
 const port = 3000;
 const mongoDBUrl = "mongodb://localhost:27017/";
 
@@ -9,6 +11,39 @@ server.use('/frontend/css', express.static('frontend/css'))
 
 server.get('/', (req, res) => {
     res.send('Server is up!');
+});
+
+server.post('/insertBooking', (req, res) => {
+    const client = new MongoClient(mongoDBUrl, {
+        family: 4,
+        maxPoolSize: 200,
+        maxConnecting: 15
+    });
+    let dataBaseInsertResult,
+        returnData = {};
+
+    async function insertFormData(postData) {
+        try {
+            const database = client.db("sunshineDB");
+            const rooms = database.collection("bookings");
+            dataBaseInsertResult = await rooms.insertOne(postData.formUserData);
+
+            let insertedId = dataBaseInsertResult.insertedId;
+
+            if (insertedId) {
+                returnData.succesfulDatabaseInsert = true;
+            }
+
+            res.send(returnData);
+        } finally {
+            //dataBaseInsertResult.close();
+            res.send({
+                succesfulDatabaseInsert: false
+            });
+            await client.close();
+        }
+    }
+    insertFormData(req.body).catch(console.dir);
 });
 
 server.get('/rooms', (req, res) => {

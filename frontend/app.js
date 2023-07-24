@@ -21,9 +21,9 @@ let appData = {
     firstName: '',
     lastName: '',
     comment: '',
-    startDate: '',
-    endDate: '',
-    headCount: null,
+    dateOfArrival: '',
+    dateOfDeparture: '',
+    numberOfGuests: null,
     formRoom: ''
   },
   rooms: [],
@@ -33,8 +33,8 @@ let appData = {
   //az appData objectben hozz létre egy formOptions nevű objectet, amiben key-value pairek legyenek
   formOptions: {
     formRoomsDataBaseElements: formRoomsDataBaseElements,
-    //az appData objecten belüli formOptions objectben hozz létre egy headCountOptions nevű array-t, amiben legyen 5 névtelen object, bennük fejenként 2-2 key-value pairrel
-    headCountOptions: [
+    //az appData objecten belüli formOptions objectben hozz létre egy numberOfGuestsOptions nevű array-t, amiben legyen 5 névtelen object, bennük fejenként 2-2 key-value pairrel
+    numberOfGuestsOptions: [
       { text: '1 fő', value: 1 },
       { text: '2 fő', value: 2 },
       { text: '3 fő', value: 3 },
@@ -176,9 +176,9 @@ const app = createApp({
           firstName: this.formUserData.firstName,
           lastName: this.formUserData.lastName,
           comment: this.formUserData.comment,
-          startDate: this.formUserData.startDate,
-          endDate: this.formUserData.endDate,
-          headCount: this.formUserData.headCount
+          dateOfArrival: this.formUserData.dateOfArrival,
+          dateOfDeparture: this.formUserData.dateOfDeparture,
+          numberOfGuests: this.formUserData.numberOfGuests
         }
       };
 
@@ -194,11 +194,11 @@ const app = createApp({
       let popUpText = '';
       popUpText = "Név: " + `${this.formUserData.lastName}` + " " + `${this.formUserData.firstName}`;
       popUpText += "\n";
-      popUpText += "Vendégek száma: " + this.formUserData.headCount;
+      popUpText += "Vendégek száma: " + this.formUserData.numberOfGuests;
       popUpText += "\n";
-      popUpText += "Érkezés napja: " + this.formUserData.startDate;
+      popUpText += "Érkezés napja: " + this.formUserData.dateOfArrival;
       popUpText += "\n";
-      popUpText += "Távozás napja: " + this.formUserData.endDate;
+      popUpText += "Távozás napja: " + this.formUserData.dateOfDeparture;
       popUpText += "\n";
       if (Number.isInteger(this.formUserData.formRoom)) {
         popUpText += "Lakosztály: " + this.roomsData[this.formUserData.formRoom].name;

@@ -46,19 +46,19 @@
         <label for="firstName">Keresztnév:</label>
         <input type="text" v-model="formUserData.firstName" id="firstName" name="firstName">
 
-        <label for="headCount">Hány főre foglal szobát?</label>
-        <select v-model="formUserData.headCount" id="headCount" name="headCount">
+        <label for="numberOfGuests">Hány főre foglal szobát?</label>
+        <select v-model="formUserData.numberOfGuests" id="numberOfGuests" name="numberOfGuests">
           <option value="" disabled hidden>Vendégek száma</option>
-          <option v-for="headCount in formOptions.headCountOptions" :value="headCount.value">
-            {{ headCount.text }}
+          <option v-for="numberOfGuests in formOptions.numberOfGuestsOptions" :value="numberOfGuests.value">
+            {{ numberOfGuests.text }}
           </option>
         </select>
 
-        <label for="startDate">Start date:</label>
-        <input v-model="formUserData.startDate" type="date" id="startDate" name="startDate" min="2023-06-01"
+        <label for="dateOfArrival">Start date:</label>
+        <input v-model="formUserData.dateOfArrival" type="date" id="dateOfArrival" name="dateOfArrival" min="2023-06-01"
           max="2023-12-31">
-        <label for="endDate">End date:</label>
-        <input v-model="formUserData.endDate" type="date" id="endDate" name="endDate" min="2023-06-01" max="2023-12-31">
+        <label for="dateOfDeparture">End date:</label>
+        <input v-model="formUserData.dateOfDeparture" type="date" id="dateOfDeparture" name="dateOfDeparture" min="2023-06-01" max="2023-12-31">
 
         <label for="formRoomText">Melyik lakosztályban kíván megszállni?</label>
         <select v-model="formUserData.formRoom" id="formRoom" name="formRoom" placeholder="lakosztályaink">
