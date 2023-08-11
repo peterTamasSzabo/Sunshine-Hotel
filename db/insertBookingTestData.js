@@ -15,7 +15,7 @@ async function insertData() {
                 "numberOfGuests": 3,
                 "dateOfArrival": "2023-7-2",
                 "dateOfDeparture": "2023-7-15",
-                "room": "Szilvia",
+                "formRoom": 1,
                 "comment": "Hozzuk Bugsit is, a kutyánkat!!!!"
             },
             {
@@ -24,7 +24,7 @@ async function insertData() {
                 "numberOfGuests": 5,
                 "dateOfArrival": "2023-8-11",
                 "dateOfDeparture": "2023-8-13",
-                "room": "Szilvia",
+                "formRoom": 3,
                 "comment": "Hegedülök."
             },
             {
@@ -33,7 +33,7 @@ async function insertData() {
                 "numberOfGuests": 1,
                 "dateOfArrival": "2023-7-4",
                 "dateOfDeparture": "2023-7-8",
-                "room": "Anna",
+                "formRoom": 2,
                 "comment": "Kérem ne zavarjanak!"
             },
             {
@@ -42,7 +42,7 @@ async function insertData() {
                 "numberOfGuests": 2,
                 "dateOfArrival": "2023-9-10",
                 "dateOfDeparture": "2023-9-23",
-                "room": "Luca",
+                "formRoom": 1,
                 "comment": "Szeretnénk kérni gyertyát."
             },
             {
@@ -51,7 +51,7 @@ async function insertData() {
                 "numberOfGuests": 1,
                 "dateOfArrival": "2023-9-6",
                 "dateOfDeparture": "2023-9-15",
-                "room": "Kata",
+                "formRoom": 3,
                 "comment": "Nincs mit mondanom, köszönöm."
             }
         ];

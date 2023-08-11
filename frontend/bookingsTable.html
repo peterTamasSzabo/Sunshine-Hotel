@@ -41,7 +41,7 @@
     <section>
       <h1>Aktuális Szobafoglalások</h1>
       <br><br>
-      <table class="tableFrame">
+      <table class="tableFrame" v-if="showTable">
         <thead>
           <tr>
             <td>Vezetéknév</td>
@@ -54,95 +54,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Kartics</td>
-            <td>Jolán</td>
-            <td>3</td>
-            <td>2023-07-03</td>
-            <td>2023-07-10</td>
-            <td>Kata</td>
-            <td>Remélem kemények a párnák a DEREKAM miatt</td>
-          </tr>
-          <tr>
-            <td>Horváth</td>
-            <td>Anita</td>
-            <td>2</td>
-            <td>2023-08-02</td>
-            <td>2023-09-01</td>
-            <td>Szilvia</td>
-            <td>Nászutasok vagyunk, rózsaszín szivecske-párnát kérünk. :) </td>
-          </tr>
-          <tr>
-            <td>Hámori</td>
-            <td>Géza</td>
-            <td>1</td>
-            <td>2023-08-01</td>
-            <td>2023-08-13</td>
-            <td>Kata</td>
-            <td>Ide nem tudok mit írni, minek van ilyen rublikájuk?</td>
-          </tr>
-          <tr>
-            <td>Kusztics</td>
-            <td>Emília</td>
-            <td>5</td>
-            <td>2023-1-09</td>
-            <td>2023-10-11</td>
-            <td>Szilvia</td>
-            <td>Nem kérek ébresztést!!!!!!</td>
-          </tr>
-          <tr>
-            <td>Szerecseni</td>
-            <td>Gyula</td>
-            <td>2</td>
-            <td>2023-07-18</td>
-            <td>2023-07-30</td>
-            <td>Luca</td>
-            <td>Laktóz-érzékeny vagyok 3 és fél éve.</td>
-          </tr>
-          <tr>
-            <td>Horváth</td>
-            <td>Renátó</td>
-            <td>2</td>
-            <td>2023-06-17</td>
-            <td>2023-07-01</td>
-            <td>Kata</td>
-            <td>Külön szimpla ágyat kérünk a feleségemmel.</td>
-          </tr>
-          <tr>
-            <td>Karó</td>
-            <td>Patrícia</td>
-            <td>3</td>
-            <td>2023-10-16</td>
-            <td>2023-10-24</td>
-            <td>Szilvia</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Berki</td>
-            <td>Noel</td>
-            <td>1</td>
-            <td>2023-06-27</td>
-            <td>2023-06-29</td>
-            <td>Luca</td>
-            <td>Délelőtt 5 órára kérek ébresztést.</td>
-          </tr>
-          <tr>
-            <td>Balogh</td>
-            <td>Mira</td>
-            <td>4</td>
-            <td>2023-07-05</td>
-            <td>2023-07-10</td>
-            <td>Kata</td>
-            <td>A kiskutyámnak kérek egy fekvőhelyet az ágy elé.</td>
-          </tr>
-          <tr>
-            <td>Kovács</td>
-            <td>László</td>
-            <td>2</td>
-            <td>2023-11-20</td>
-            <td>2023-11-24</td>
-            <td>Szilvia</td>
-            <td>Nem tudtam feltűntetni, hogy jogász doktor vagyok, kérem javítani. dr. Kovács László, 2023.06.10.</td>
+          <tr v-for="formUserData in bookings">
+            <td>{{ formUserData.lastName }}</td>
+            <td>{{ formUserData.firstName }}</td>
+            <td>{{ formUserData.numberOfGuests }}</td>
+            <td>{{ formUserData.dateOfArrival }}</td>
+            <td>{{ formUserData.dateOfDeparture }}</td>
+            <td>{{ roomsData[formUserData.formRoom].name }}</td>
+            <td>{{ formUserData.comment }}</td>
           </tr>
         </tbody>
       </table>
@@ -151,19 +70,10 @@
     <footer>
       <h2>Készítette: <br> Szabó Péter Tamás</h2>
     </footer>
-
   </container>
 
-
-
-
-
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-
-
-  <script src="app.js"></script>
-
+  <script src="bookingsApp.js"></script>
 
 </body>
 
