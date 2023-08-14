@@ -72,7 +72,6 @@ const app = createApp({
               value: i,
               isOccupied: isOccupied
             };
-            //kipróbálni, hogy az ,,1" helyett 0 legyen, hiszen nem akarunk törölni
             this.formOptions.formRoomsDataBaseElements.splice(i, 0, room);
           }
         })

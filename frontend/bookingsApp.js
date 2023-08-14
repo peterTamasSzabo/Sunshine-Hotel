@@ -2,6 +2,11 @@ const { createApp } = Vue;
 
 //initial variable declarations:
 let appData = {
+  rooms: [],
+  bookings: [],
+  showTable: false,
+  showServerError: false,
+  roomsData: [],
   formUserData: {
     firstName: '',
     lastName: '',
@@ -11,7 +16,6 @@ let appData = {
     numberOfGuests: null,
     formRoom: ''
   },
-  rooms: [],
   formOptions: {
     numberOfGuestsOptions: [
       { text: '1 fő', value: 1 },
@@ -20,11 +24,7 @@ let appData = {
       { text: '4 fő', value: 4 },
       { text: '5 fő', value: 5 }
     ]
-  },
-  bookings: [],
-  showTable: false,
-  showServerError: false,
-  roomsData: []
+  }
 };
 //vue application:
 createApp({
