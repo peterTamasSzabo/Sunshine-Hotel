@@ -15,60 +15,56 @@
 
     <header>
       <nav>
-        <ul class="navlinks">
-          <a href="index.html" class="navlink">
-            <li>Főoldal</li>
-          </a>
-          <a href="about.html" class="navlink">
-            <li>Rólunk</li>
-          </a>
-          <a href="gallery.html" class="navlink">
-            <li>Galéria</li>
-          </a>
-          <a href="booking.html" class="navlink">
-            <li>Szobafoglalás</li>
-          </a>
-          <a href="bookingsTable.html" class="navlink">
-            <li>Táblázat</li>
-          </a>
-          <a href="connect.html" class="navlink">
-            <li>Kapcsolat</li>
-          </a>
+        <ul class="navLinks" :class="{ active: showMobileMenu }">
+          <li><a href="index.html" class="navLink">Főoldal</a></li>
+          <li><a href="about.html" class="navLink">Rólunk</a></li>
+          <li><a href="gallery.html" class="navLink">Galéria</a></li>
+          <li><a href="booking.html" class="navLink">Szobafoglalás</a></li>
+          <li><a href="bookingsTable.html" class="navLink" id="navFocused">Táblázat</a></li>
+          <li><a href="connect.html" class="navLink">Kapcsolat</a></li>
         </ul>
+
+        <div class="hamburgerMenu" @click="toggleMobileMenu">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
       </nav>
     </header>
 
     <section>
-      <h1>Aktuális Szobafoglalások</h1>
-      <br><br>
-      <table class="tableFrame" v-if="showTable">
-        <thead>
-          <tr>
-            <td>Vezetéknév</td>
-            <td>Keresztnév</td>
-            <td>Vendégek száma</td>
-            <td>Érkezés dátuma</td>
-            <td>Távozás dátuma</td>
-            <td>Szoba</td>
-            <td>Megjegyzés</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="formUserData in bookings">
-            <td>{{ formUserData.lastName }}</td>
-            <td>{{ formUserData.firstName }}</td>
-            <td>{{ formUserData.numberOfGuests }}</td>
-            <td>{{ formUserData.dateOfArrival }}</td>
-            <td>{{ formUserData.dateOfDeparture }}</td>
-            <td>{{ roomsData[formUserData.formRoom].name }}</td>
-            <td>{{ formUserData.comment }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="tableArea">
+        <h1>Aktuális Szobafoglalások</h1>
+        <br><br>
+        <table class="table" v-if="showTable">
+          <thead>
+            <tr>
+              <th>Vezetéknév</th>
+              <th>Keresztnév</th>
+              <th>Vendégek száma</th>
+              <th>Érkezés dátuma</th>
+              <th>Távozás dátuma</th>
+              <th>Szoba</th>
+              <th>Megjegyzés</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="formUserData in bookings">
+              <td>{{ formUserData.lastName }}</td>
+              <td>{{ formUserData.firstName }}</td>
+              <td>{{ formUserData.numberOfGuests }}</td>
+              <td>{{ formUserData.dateOfArrival }}</td>
+              <td>{{ formUserData.dateOfDeparture }}</td>
+              <td>{{ roomsData[formUserData.formRoom].name }}</td>
+              <td>{{ formUserData.comment }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <footer>
-      <h2>Készítette: <br> Szabó Péter Tamás</h2>
+      <p>Készítette: <br> Szabó Péter Tamás</p>
     </footer>
   </container>
 

@@ -15,37 +15,31 @@
 
     <header>
       <nav>
-        <ul class="navlinks">
-          <a href="index.html" class="navlink">
-            <li>Főoldal</li>
-          </a>
-          <a href="about.html" class="navlink">
-            <li>Rólunk</li>
-          </a>
-          <a href="gallery.html" class="navlink">
-            <li>Galéria</li>
-          </a>
-          <a href="booking.html" class="navlink">
-            <li>Szobafoglalás</li>
-          </a>
-          <a href="bookingsTable.html" class="navlink">
-            <li>Táblázat</li>
-          </a>
-          <a href="connect.html" class="navlink">
-            <li>Kapcsolat</li>
-          </a>
+        <ul class="navLinks" :class="{ active: showMobileMenu }">
+          <li><a href="index.html" class="navLink">Főoldal</a></li>
+          <li><a href="about.html" class="navLink" id="navFocused">Rólunk</a></li>
+          <li><a href="gallery.html" class="navLink">Galéria</a></li>
+          <li><a href="booking.html" class="navLink">Szobafoglalás</a></li>
+          <li><a href="bookingsTable.html" class="navLink">Táblázat</a></li>
+          <li><a href="connect.html" class="navLink">Kapcsolat</a></li>
         </ul>
+
+        <div class="hamburgerMenu" @click="toggleMobileMenu">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
       </nav>
     </header>
 
     <section>
 
-        <h1>Rólunk</h1>
+      <h1>Rólunk</h1>
 
     </section>
 
     <footer>
-      <h2>Készítette: <br> Szabó Péter Tamás</h2>
+      <p>Készítette: <br> Szabó Péter Tamás</p>
     </footer>
 
   </container>

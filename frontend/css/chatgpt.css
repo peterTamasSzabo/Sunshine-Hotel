@@ -1,0 +1,15 @@
+/* Hover and Focus Effects */
+a:hover,
+a:focus {
+  color: #333333; /* Dark Gray */
+  background-color: #128099; /* Slightly Darkened Teal */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #128099; /* Slightly Darkened Teal */
+  color: #ffffff; /* White */
+  border-color: #128099; /* Slightly Darkened Teal */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

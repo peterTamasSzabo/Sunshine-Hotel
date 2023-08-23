@@ -14,71 +14,87 @@
   <container id="app">
 
     <header>
+
       <nav>
-        <ul class="navlinks">
-          <a href="index.html" class="navlink">
-            <li>Főoldal</li>
-          </a>
-          <a href="about.html" class="navlink">
-            <li>Rólunk</li>
-          </a>
-          <a href="gallery.html" class="navlink">
-            <li>Galéria</li>
-          </a>
-          <a href="booking.html" class="navlink">
-            <li>Szobafoglalás</li>
-          </a>
-          <a href="bookingsTable.html" class="navlink">
-            <li>Táblázat</li>
-          </a>
-          <a href="connect.html" class="navlink">
-            <li>Kapcsolat</li>
-          </a>
+        <ul class="navLinks" :class="{ active: showMobileMenu }">
+          <li><a href="index.html" class="navLink">Főoldal</a></li>
+          <li><a href="about.html" class="navLink">Rólunk</a></li>
+          <li><a href="gallery.html" class="navLink">Galéria</a></li>
+          <li><a href="booking.html" class="navLink" id="navFocused">Szobafoglalás</a></li>
+          <li><a href="bookingsTable.html" class="navLink">Táblázat</a></li>
+          <li><a href="connect.html" class="navLink">Kapcsolat</a></li>
         </ul>
+
+        <div class="hamburgerMenu" @click="toggleMobileMenu">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
       </nav>
     </header>
-    
+
     <section>
       <section v-if="showServerError">
         <h1>Nem sikerült elküldeni a foglalást, kérjük próbálja meg később!</h1>
       </section>
-      <form @submit.prevent="onSubmit" v-if="showForm">
-        <h1>Szobafoglalás</h1>
-        <label for="lastName">Vezetéknév:</label>
-        <input type="text" v-model="formUserData.lastName" id="lastName" name="lastName">
-        <label for="firstName">Keresztnév:</label>
-        <input type="text" v-model="formUserData.firstName" id="firstName" name="firstName">
+      <form @submit.prevent="onSubmit" v-if="showForm" class="formArea">
+        <h1>Lakosztály foglalása</h1>
+        <!-- név: -->
+        <div class="formGroup">
+          <label for="lastName">Vezetéknév:</label>
+          <input type="text" v-model="formUserData.lastName" id="lastName" name="lastName" required>
+        </div>
+        <div class="formGroup">
+          <label for="firstName">Keresztnév:</label>
+          <input type="text" v-model="formUserData.firstName" id="firstName" name="firstName" required>
+        </div>
+        <!-- hány főre -->
+        <div class="formGroup">
+          <label for="numberOfGuests">Hány főre foglal szobát?</label>
+          <select v-model="formUserData.numberOfGuests" id="numberOfGuests" name="numberOfGuests" required>
+            <option value="" disabled hidden>Vendégek száma</option>
+            <option v-for="numberOfGuests in formOptions.numberOfGuestsOptions" :value="numberOfGuests.value">
+              {{ numberOfGuests.text }}
+            </option>
+          </select>
+        </div>
+        <!-- dátum: -->
+        <div class="formGroup">
+          <label for="dateOfArrival">Érkezés:</label>
+          <input v-model="formUserData.dateOfArrival" type="date" id="dateOfArrival" name="dateOfArrival"
+            min="2023-06-01" max="2023-12-31" required>
+          </div>
+          <label for="dateOfDeparture">Távozás:</label>
+          <input v-model="formUserData.dateOfDeparture" type="date" id="dateOfDeparture" name="dateOfDeparture"
+            min="2023-06-01" max="2023-12-31" required>
 
-        <label for="numberOfGuests">Hány főre foglal szobát?</label>
-        <select v-model="formUserData.numberOfGuests" id="numberOfGuests" name="numberOfGuests">
-          <option value="" disabled hidden>Vendégek száma</option>
-          <option v-for="numberOfGuests in formOptions.numberOfGuestsOptions" :value="numberOfGuests.value">
-            {{ numberOfGuests.text }}
-          </option>
-        </select>
-
-        <label for="dateOfArrival">Start date:</label>
-        <input v-model="formUserData.dateOfArrival" type="date" id="dateOfArrival" name="dateOfArrival" min="2023-06-01"
-          max="2023-12-31">
-        <label for="dateOfDeparture">End date:</label>
-        <input v-model="formUserData.dateOfDeparture" type="date" id="dateOfDeparture" name="dateOfDeparture" min="2023-06-01" max="2023-12-31">
-
-        <label for="formRoomText">Melyik lakosztályban kíván megszállni?</label>
-        <select v-model="formUserData.formRoom" id="formRoom" name="formRoom" placeholder="lakosztályaink">
-          <option value="" disabled hidden>Lakosztályt választok</option>
-          <option v-for="room in formOptions.formRoomsDataBaseElements" :value="room.value" :disabled="room.isOccupied">
-            {{ room.text }}
-          </option>
-        </select>
-        <label for="comment">Megjegyzés:</label>
-        <textarea v-model="formUserData.comment" id="comment" class="comment" name="comment" rows="3" cols="30">
-        </textarea>
+        <!-- lakosztály: -->
+        <div class="formGroup">
+          <label for="formRoomText">Melyik lakosztályban kíván megszállni?</label>
+          <select v-model="formUserData.formRoom" id="formRoom" name="formRoom" placeholder="lakosztályaink">
+            <option value="" disabled hidden>Lakosztályt választok</option>
+            <option v-for="room in formOptions.formRoomsDataBaseElements" :value="room.value"
+              :disabled="room.isOccupied">
+              {{ room.text }}
+            </option>
+          </select>
+        </div>
+        <!-- comment: -->
+        <div class="formGroup">
+          <label for="comment">Megjegyzés:</label>
+          <textarea v-model="formUserData.comment" id="comment" class="comment" name="comment" rows="3" cols="30">
+    </textarea>
+        </div>
         <br>
-        <input class="submit" type="submit" value="Submit">
+        <!-- submit gomb: -->
+        <div class="submitArea">
+          <input class="submit" type="submit" value="FOGLALÁS">
+        </div>
       </form>
 
-      <section v-if="!showForm">
-        <h1>Sikeresen feladta a foglalását!</h1><br><br>
+
+      <section v-if="!showForm" class="succesfulBookingMessage">
+        <h1>Sikeresen feladta foglalását!</h1>
         <p>Név: {{ formUserData.lastName }} {{ formUserData.firstName }}</p>
         <p>Vendégek száma: {{ formUserData.numberOfGuests }} </p>
         <p>Érkezés napja: {{ formUserData.dateOfArrival }} </p>
@@ -91,7 +107,7 @@
     </section>
 
     <footer>
-      <h2>Készítette: <br> Szabó Péter Tamás</h2>
+      <p>Készítette: <br> Szabó Péter Tamás</p>
     </footer>
 
   </container>

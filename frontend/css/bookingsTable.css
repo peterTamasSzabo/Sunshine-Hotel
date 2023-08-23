@@ -1,60 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
+
 html {
 	height: 100%;
-}
-nav {
-	height: 6vh;
-	width: 100%;
-	background-color: rgb(24, 24, 24);
-}
-
-.navlinks {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-}
-
-.navlink {
-	padding: 0.5em 2em;
-	text-decoration: none;
-	color: blanchedalmond;
-	font-size: 2rem;
+	font-family: 'Montserrat', sans-serif;
 }
 h1 {
-	font-size: 3rem;
-	margin: 0em 0 2em 0;
+	font-size: 2rem;
+	margin: 0em 0 1em 0;
+	color: #333333;
 }
-
 h2 {
 	color: white;
 	text-align: center;
 	text-justify: center;
 }
 
+nav {
+	height: 7vh;
+	width: 100%;
+	background-color: #17a2b8;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.navLinks {
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+}
+#navFocused {
+	background-color: #128099;
+}
+.navLink {
+	padding: 0.73em 1vw;
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 1.5rem;
+	height: 100%;
+	width: 8vw;
+}
+.navLink:hover {
+	background-color: #128099;
+	color: #ffffff;
+	border-color: #128099;
+	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.navLink:focus {
+	outline: none;
+	background-color: #128099;
+	color: #ffffff;
+	border-color: #128099;
+	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+		border-color 0.3s ease;
+}
+a:hover, a:focus {
+	color: #333333;
+	background-color: #128099;
+	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.hamburgerMenu {
+	display: none;
+	cursor: pointer;
+}
+.bar {
+	width: 25px;
+	height: 3px;
+	background-color: #333;
+	margin: 5px 0;
+}
+
 section {
-	background-color: rgb(59, 44, 29);
+	background-color: #fff4eb;
 	background-size: cover;
 	text-align: center;
 	padding: 2rem 0;
-	color: rgb(212, 212, 212);
+	color: #333333;
 	width: 100%;
 	min-height: 80vh;
 	font-size: 1.5rem;
 	display: flex;
+	justify-content: center;
+}
+
+.tableArea {
+	min-height: 80vh;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-
-.tableFrame {
+.table {
 	width: 90%;
 }
 
 table,
 td {
-	border: 5px solid #881616;
-	min-width: auto;
-	background-color: #181818;
-	color: #ffffffd2;
+	border-collapse: collapse;
+	border: 5px solid #fffff2;
+	background-color: #f4e9d8;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5rem;
 	padding: 10px 10px 10px 10px;
@@ -63,24 +111,115 @@ td {
 tr {
 	height: 1.5em;
 }
+tr:nth-child(even) {
+	background-color: white;
+}
 
+tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
 table td:last-child {
 	text-align: left;
 }
 
-​ thead,
-tfoot {
+th {
 	background-color: #181818;
 	color: #ffffffd2;
 	font-weight: 500;
-	font-family: Arial, Helvetica, sans-serif;
-	height: 2em;
+	height: auto;
 }
 
 footer {
-	background-color: black;
+	background-color: #d4eaf3;
+	text-align: center;
 	width: 100%;
 	min-height: 3.1vh;
 	padding: 2em 0;
 	line-height: 1em;
+}
+
+footer p {
+	font-family: 'Montserrat', sans-serif;
+	color: #555555;
+}
+
+/*Responsiveness: */
+
+@media (min-width: 769px) {
+	.hamburgerMenu {
+		display: none;
+		.formArea {
+			text-align: left;
+			background-color: #ffe8d4;
+			padding: 1em;
+			width: 50%;
+			border-radius: 0.6em;
+		}
+	}
+}
+@media (max-width: 1040px) {
+	.formArea {
+		width: 50%;
+	}
+}
+@media (max-width: 830px) {
+	.formArea {
+		width: 60%;
+	}
+}
+@media (max-width: 768px) {
+	nav {
+		height: 7vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+	.navLinks {
+		flex-direction: column;
+		align-items: center;
+		background-color: #136f7d;
+		display: none;
+		position: absolute;
+		top: 7vh;
+		left: 0;
+		width: 100%;
+		z-index: 1;
+		height: 16vh;
+	}
+	.navLinks.active {
+		display: flex;
+	}
+	.navLink {
+		padding: 0 1em;
+		font-size: 1.5rem;
+		color: white;
+		text-align: center;
+		width: 100%;
+		margin: 2em 2em;
+	}
+	.navLink:hover {
+		background-color: #128099;
+		color: #ffffff;
+		border-color: #128099;
+		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+		padding: auto;
+		margin: auto;
+	}
+	.hamburgerMenu {
+		display: block;
+	}
+	.formArea {
+		text-align: left;
+		background-color: #ffe8d4;
+		padding: 1em;
+		width: 60%;
+		border-radius: 0.6em;
+	}
+}
+@media (max-width: 700px) {
+	.formArea {
+		width: 70%;
+	}
 }

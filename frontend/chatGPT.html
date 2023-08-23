@@ -1,0 +1,41 @@
+<form @submit.prevent="onSubmit" v-if="showForm" class="formArea">
+  <h1>Lakosztály foglalása</h1>
+  <!-- név: -->
+  <label for="lastName">Vezetéknév:</label>
+  <input type="text" v-model="formUserData.lastName" id="lastName" name="lastName" required>
+  <label for="firstName">Keresztnév:</label>
+  <input type="text" v-model="formUserData.firstName" id="firstName" name="firstName" required>
+  <!-- hány főre -->
+  <label for="numberOfGuests">Hány főre foglal szobát?</label>
+  <select v-model="formUserData.numberOfGuests" id="numberOfGuests" name="numberOfGuests" required>
+      <option value="" disabled hidden>Vendégek száma</option>
+      <option v-for="numberOfGuests in formOptions.numberOfGuestsOptions" :value="numberOfGuests.value">
+          {{ numberOfGuests.text }}
+      </option>
+  </select>
+  <!-- dátum: -->
+  <label for="dateOfArrival">Érkezés:</label>
+  <input v-model="formUserData.dateOfArrival" type="date" id="dateOfArrival" name="dateOfArrival" min="2023-06-01"
+      max="2023-12-31" required>
+  <label for="dateOfDeparture">Távozás:</label>
+  <input v-model="formUserData.dateOfDeparture" type="date" id="dateOfDeparture" name="dateOfDeparture"
+      min="2023-06-01" max="2023-12-31" required>
+
+  <!-- lakosztály: -->
+  <label for="formRoomText">Melyik lakosztályban kíván megszállni?</label>
+  <select v-model="formUserData.formRoom" id="formRoom" name="formRoom" placeholder="lakosztályaink">
+      <option value="" disabled hidden>Lakosztályt választok</option>
+      <option v-for="room in formOptions.formRoomsDataBaseElements" :value="room.value" :disabled="room.isOccupied">
+          {{ room.text }}
+      </option>
+  </select>
+  <!-- comment: -->
+  <label for="comment">Megjegyzés:</label>
+  <textarea v-model="formUserData.comment" id="comment" class="comment" name="comment" rows="3" cols="30">
+  </textarea>
+  <br>
+  <!-- submit gomb: -->
+  <div class="submitArea">
+      <input class="submit" type="submit" value="FOGLALÁS">
+  </div>
+</form>

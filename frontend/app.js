@@ -31,7 +31,8 @@ let appData = {
     ]
   },
   showForm: true,
-  showServerError: false
+  showServerError: false,
+  showMobileMenu: false
 };
 
 
@@ -125,8 +126,13 @@ const app = createApp({
       }
 
       this.postFormData(allFormUserData);
+    },
+
+    toggleMobileMenu() {
+      this.showMobileMenu = !this.showMobileMenu;
     }
   }
 });
 
 app.mount('#app');
+
