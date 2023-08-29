@@ -32,17 +32,24 @@ let appData = {
   },
   showForm: true,
   showServerError: false,
-  showMobileMenu: false
+  showMobileMenu: false,
+  isPageRendered: false
 };
 
 
 
 const app = createApp({
+
   data() {
     return appData;
   },
+
   created() {
     this.fetchRooms();
+  },
+
+  mounted() {
+    this.isPageRendered = true;
   },
 
   methods: {

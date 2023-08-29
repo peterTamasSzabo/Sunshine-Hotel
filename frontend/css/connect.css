@@ -116,16 +116,7 @@ footer p {
 		}
 	}
 }
-@media (max-width: 1040px) {
-	.formArea {
-		width: 50%;
-	}
-}
-@media (max-width: 830px) {
-	.formArea {
-		width: 60%;
-	}
-}
+
 @media (max-width: 768px) {
 	nav {
 		height: 7vh;
@@ -168,17 +159,5 @@ footer p {
 	}
 	.hamburgerMenu {
 		display: block;
-	}
-	.formArea {
-		text-align: left;
-		background-color: #ffe8d4;
-		padding: 1em;
-		width: 60%;
-		border-radius: 0.6em;
-	}
-}
-@media (max-width: 700px) {
-	.formArea {
-		width: 70%;
 	}
 }

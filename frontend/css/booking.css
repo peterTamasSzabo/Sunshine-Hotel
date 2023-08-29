@@ -88,6 +88,14 @@ section {
 	justify-content: center;
 }
 
+.initialHide {
+	display: none;
+}
+
+.pageRendered {
+	display: flex;
+}
+
 .formArea {
 	text-align: left;
 	background-color: #ffe8d4;

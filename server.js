@@ -1,3 +1,5 @@
+//MongoDB és express
+
 const express = require('express');
 const { MongoClient } = require("mongodb");
 const server = express();
@@ -14,6 +16,7 @@ server.get('/', (req, res) => {
 });
 
 server.post('/insertBooking', (req, res) => {
+    //létrehozunk egy MongoDB klienst
     const client = new MongoClient(mongoDBUrl, {
         family: 4,
         maxPoolSize: 200,
@@ -21,7 +24,7 @@ server.post('/insertBooking', (req, res) => {
     });
     let dataBaseInsertResult,
         returnData = {};
-
+//beírjuk a formadatokat az adatbázisba
     async function insertFormData(postData) {
         try {
             const database = client.db("sunshineDB");
@@ -45,7 +48,7 @@ server.post('/insertBooking', (req, res) => {
     }
     insertFormData(req.body).catch(console.dir);
 });
-
+//lekérjük az adatokat az adatbázisból, leadjuk a kliensnek
 server.get('/rooms', (req, res) => {
     const client = new MongoClient(mongoDBUrl, {
         family: 4,
@@ -64,7 +67,7 @@ server.get('/rooms', (req, res) => {
             for await (const doc of roomsCursor) {
                 result.push(doc);
             }
-
+//itt adjuk le a kért adatokat a kliensnek res=respond
             res.send(result);
         } finally {
             roomsCursor.close();

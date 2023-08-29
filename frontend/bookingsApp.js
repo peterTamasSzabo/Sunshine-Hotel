@@ -35,6 +35,7 @@ createApp({
     this.fetchBookings();
     this.fetchRooms();
   },
+  
   methods: {
 
     fetchBookings() {

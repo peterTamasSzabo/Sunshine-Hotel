@@ -14,7 +14,6 @@
   <container id="app">
 
     <header>
-
       <nav>
         <ul class="navLinks" :class="{ active: showMobileMenu }">
           <li><a href="index.html" class="navLink">Főoldal</a></li>
@@ -33,7 +32,7 @@
       </nav>
     </header>
 
-    <section>
+    <section class="initialHide" :class="{ pageRendered: isPageRendered }">
       <section v-if="showServerError">
         <h1>Nem sikerült elküldeni a foglalást, kérjük próbálja meg később!</h1>
       </section>
@@ -92,7 +91,6 @@
         </div>
       </form>
 
-
       <section v-if="!showForm" class="succesfulBookingMessage">
         <h1>Sikeresen feladta foglalását!</h1>
         <p>Név: {{ formUserData.lastName }} {{ formUserData.firstName }}</p>
@@ -103,7 +101,6 @@
         <p>Megjegyzés: {{ formUserData.comment }} </p>
       </section>
 
-
     </section>
 
     <footer>
@@ -112,13 +109,9 @@
 
   </container>
 
-
-
-
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="app.js"></script>
   <script src="bookingsApp.js"></script>
-
 
 </body>
 
